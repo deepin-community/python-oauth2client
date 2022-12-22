@@ -1,0 +1,143 @@
+python-oauth2client (4.1.3-2) unstable; urgency=medium
+
+  * Upload to unstable.
+
+ -- Thomas Goirand <zigo@debian.org>  Mon, 16 Aug 2021 19:22:36 +0200
+
+python-oauth2client (4.1.3-1) experimental; urgency=medium
+
+  * New upstream release.
+
+ -- Thomas Goirand <zigo@debian.org>  Fri, 26 Mar 2021 18:03:24 +0100
+
+python-oauth2client (4.1.2-7) unstable; urgency=medium
+
+  * Switch to python3-pycryptodome (Closes: #971297).
+    Add fix-import-Cryptodome-not-Crypto.patch to make it possible.
+
+ -- Thomas Goirand <zigo@debian.org>  Tue, 05 Jan 2021 12:49:19 +0100
+
+python-oauth2client (4.1.2-6) unstable; urgency=medium
+
+  * Drop dependency on python3-uritemplate (Closes: #963811).
+
+ -- Thomas Goirand <zigo@debian.org>  Sun, 28 Jun 2020 17:46:31 +0200
+
+python-oauth2client (4.1.2-5) unstable; urgency=medium
+
+  * Add fix-hmac.new-call-in-py3.8.patch (Closes: #950051).
+
+ -- Thomas Goirand <zigo@debian.org>  Mon, 10 Feb 2020 13:21:09 +0100
+
+python-oauth2client (4.1.2-4) unstable; urgency=medium
+
+  [ Ondřej Nový ]
+  * d/control: Use team+openstack@tracker.debian.org as maintainer
+  * Use debhelper-compat instead of debian/compat.
+
+  [ Thomas Goirand ]
+  * Removed Python 2 support.
+
+ -- Thomas Goirand <zigo@debian.org>  Tue, 13 Aug 2019 21:54:51 +0200
+
+python-oauth2client (4.1.2-3) unstable; urgency=medium
+
+  [ Ondřej Nový ]
+  * d/control: Set Vcs-* to salsa.debian.org
+
+  [ Thomas Goirand ]
+  * Add missin dh-python build-depends.
+  * Standards-Version is now 4.1.3.
+
+ -- Thomas Goirand <zigo@debian.org>  Mon, 02 Apr 2018 19:43:56 +0200
+
+python-oauth2client (4.1.2-2) unstable; urgency=medium
+
+  * Uploading to unstable.
+  * Watch file using HTTPS.
+  * Standards-Version is now 4.1.1.
+
+ -- Thomas Goirand <zigo@debian.org>  Sun, 29 Oct 2017 21:24:55 +0000
+
+python-oauth2client (4.1.2-1) experimental; urgency=medium
+
+  [ Daniel Baumann ]
+  * Updating vcs fields.
+  * Updating copyright format url.
+  * Updating maintainer field.
+  * Running wrap-and-sort -bast.
+  * Updating standards version to 4.0.0.
+  * Removing gbp.conf, not used anymore or should be specified in the
+    developers dotfiles.
+  * Updating standards version to 4.0.1.
+  * Updating standards version to 4.1.0.
+
+  [ Thomas Goirand ]
+  * New upstream release.
+  * Using compat level 10.
+  * Fixed (build-)depends for this release.
+  * Using pkgos-dh_auto_install and removing tests folder. (Closes: #875962)
+  * Only run tests in the tests folder.
+  * Use --exclude-dir=tests/contrib/django_util when running tests.
+  * Remove 2 broken tests.
+
+ -- Thomas Goirand <zigo@debian.org>  Mon, 25 Sep 2017 16:28:58 +0200
+
+python-oauth2client (2.0.1-3) unstable; urgency=medium
+
+  [ Ondřej Nový ]
+  * Standards-Version is 3.9.8 now (no change)
+
+  [ Thomas Goirand ]
+  * Added runtime depends on python{3,}-openssl (Closes: #794756).
+
+ -- Thomas Goirand <zigo@debian.org>  Tue, 24 May 2016 18:04:20 +0200
+
+python-oauth2client (2.0.1-2) unstable; urgency=medium
+
+  * Uploading to unstable.
+
+ -- Thomas Goirand <zigo@debian.org>  Tue, 05 Apr 2016 11:40:02 +0000
+
+python-oauth2client (2.0.1-1) experimental; urgency=medium
+
+  * New upstream release.
+  * Ran wrap-and-sort -t -a.
+  * Move package to PKG OpenStack:
+    - Updated VCS URLs.
+    - Update maintainer field.
+    - Using git tag workflow and fixed debian/gbp.conf accordingly.
+  * Updated (build-)depends.
+  * Running unit tests with nose (and added needed build-depends-indep).
+  * Standards-Version: 3.9.7 (no change).
+  * Fixed debian/copyright ordering.
+
+ -- Thomas Goirand <zigo@debian.org>  Tue, 22 Mar 2016 10:01:15 +0100
+
+python-oauth2client (1.4.12-0.1) unstable; urgency=low
+
+  * update to latest upstream version v1.4.12
+  * update URLs: Homepage, Vcs-*, debian/watch
+  * NMU to help fix python-googleapi #789253
+
+ -- Hans-Christoph Steiner <hans@eds.org>  Mon, 20 Jul 2015 10:47:56 -0700
+
+python-oauth2client (1.2-3) unstable; urgency=medium
+
+  * Fixes VCS URLs.
+  * Added Python 3 support.
+  * Standards-Version is now 3.9.5
+
+ -- Thomas Goirand <zigo@debian.org>  Thu, 28 Aug 2014 23:28:56 +0000
+
+python-oauth2client (1.2-2) unstable; urgency=low
+
+  * Removes embedded uritemplate folder from binary.
+
+ -- Thomas Goirand <zigo@debian.org>  Mon, 02 Sep 2013 09:00:22 +0000
+
+python-oauth2client (1.2-1) unstable; urgency=low
+
+  * Initial release. (Closes: #719971)
+
+ -- Thomas Goirand <zigo@debian.org>  Sat, 17 Aug 2013 11:12:18 +0200

@@ -1,0 +1,24 @@
+Description: Use the correct Cryptodome module
+ A big thanks to Sebastian Ramacher for this patch.
+Author: Thomas Goirand <zigo@debian.org>
+Bug-Debian: https://bugs.debian.org/971297
+Forwarded: no
+Last-Update: 2021-01-07
+
+--- python-oauth2client-4.1.2.orig/oauth2client/_pycrypto_crypt.py
++++ python-oauth2client-4.1.2/oauth2client/_pycrypto_crypt.py
+@@ -13,10 +13,10 @@
+ # limitations under the License.
+ """pyCrypto Crypto-related routines for oauth2client."""
+ 
+-from Crypto.Hash import SHA256
+-from Crypto.PublicKey import RSA
+-from Crypto.Signature import PKCS1_v1_5
+-from Crypto.Util.asn1 import DerSequence
++from Cryptodome.Hash import SHA256
++from Cryptodome.PublicKey import RSA
++from Cryptodome.Signature import PKCS1_v1_5
++from Cryptodome.Util.asn1 import DerSequence
+ 
+ from oauth2client import _helpers
+ 

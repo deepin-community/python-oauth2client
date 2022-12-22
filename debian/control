@@ -1,0 +1,68 @@
+Source: python-oauth2client
+Section: python
+Priority: optional
+Maintainer: Debian OpenStack <team+openstack@tracker.debian.org>
+Uploaders:
+ Jimmy Kaplowitz <jimmy@debian.org>,
+ Thomas Goirand <zigo@debian.org>,
+Build-Depends:
+ debhelper-compat (= 10),
+ dh-python,
+ openstack-pkg-tools,
+ python3-all,
+ python3-setuptools,
+Build-Depends-Indep:
+ python3-cryptography,
+ python3-django,
+ python3-django-nose,
+ python3-fasteners,
+ python3-flask,
+ python3-httplib2,
+ python3-keyring,
+ python3-mock,
+ python3-nose,
+ python3-nose-exclude,
+ python3-openssl,
+ python3-pyasn1,
+ python3-pyasn1-modules,
+ python3-pycryptodome,
+ python3-rsa,
+ python3-six,
+ python3-sqlalchemy,
+ python3-unittest2,
+ python3-webtest,
+Standards-Version: 4.1.3
+Vcs-Browser: https://salsa.debian.org/openstack-team/python/python-oauth2client
+Vcs-Git: https://salsa.debian.org/openstack-team/python/python-oauth2client.git
+Homepage: https://github.com/google/oauth2client
+
+Package: python3-oauth2client
+Architecture: all
+Depends:
+ python3-fasteners,
+ python3-httplib2,
+ python3-openssl,
+ python3-pyasn1,
+ python3-pyasn1-modules,
+ python3-rsa,
+ python3-six,
+ python3-sqlalchemy,
+ ${misc:Depends},
+ ${python3:Depends},
+Recommends:
+ ${python:Recommends},
+Description: OAuth 2.0 client library - Python 3.x
+ The oauth2client is a client library for OAuth 2.0.
+ .
+ OAuth is an open standard for authorization. OAuth provides a method for
+ clients to access server resources on behalf of a resource owner (such as a
+ different client or an end-user). It also provides a process for end-users to
+ authorize third-party access to their server resources without sharing their
+ credentials (typically, a username and password pair), using user-agent
+ redirections.
+ .
+ OAuth is a service that is complementary to, and therefore distinct from,
+ OpenID. OAuth is also distinct from OATH, which is a reference architecture
+ for authentication (i.e. not a standard).
+ .
+ This package provides the Python 3.x module.

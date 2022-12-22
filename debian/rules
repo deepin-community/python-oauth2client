@@ -1,0 +1,36 @@
+#!/usr/bin/make -f
+
+UPSTREAM_GIT = https://github.com/google/oauth2client.git
+include /usr/share/openstack-pkg-tools/pkgos.make
+
+#export http_proxy=127.0.0.1:9
+#export https_proxy=127.0.0.1:9
+#export HTTP_PROXY=127.0.0.1:9
+#export HTTPS_PROXY=127.0.0.1:9
+
+%:
+	dh $@ --buildsystem=python_distutils --with python3
+
+override_dh_auto_clean:
+	rm -rf build
+	find . -iname '*.pyc' -delete
+	for i in $$(find . -type d -iname __pycache__) ; do rm -rf $$i ; done
+
+override_dh_auto_build:
+	echo "Do nothing..."
+
+override_dh_auto_test:
+	echo "Do nothing..."
+
+override_dh_auto_install:
+	pkgos-dh_auto_install --no-py2 --in-tmp
+	rm -rf debian/python*-oauth2client/usr/lib/python*/dist-packages/tests
+
+ifeq (,$(findstring nocheck, $(DEB_BUILD_OPTIONS)))
+	@echo "===> Running tests"
+	set -e ; set -x ; for i in $(PYTHON3S) ; do \
+		PYMAJOR=`echo $$i | cut -d'.' -f1` ; \
+		echo "===> Testing with python$$i (python$$PYMAJOR)" ; \
+		DJANGO_SETTINGS_MODULE=tests.contrib.test_django_settings PYTHONPATH=$(CURDIR)/debian/tmp/usr/lib/python3/dist-packages python$$i -m nose -v --ignore-files=test_appengine\.py --ignore-files=test__appengine_ndb\.py --exclude-dir=tests/contrib/django_util tests ; \
+	done
+endif

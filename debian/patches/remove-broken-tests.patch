@@ -1,0 +1,37 @@
+Description: Remove broken patches
+Author: Thomas Goirand <zigo@debian.org>
+Forwarded: no
+Last-Update: 2017-09-27
+
+--- python-oauth2client-4.1.2.orig/tests/contrib/test_xsrfutil.py
++++ python-oauth2client-4.1.2/tests/contrib/test_xsrfutil.py
+@@ -36,14 +36,6 @@ TEST_EXTRA_INFO_2 = b'more_extra_info'
+ 
+ class Test_generate_token(unittest.TestCase):
+ 
+-    def test_bad_positional(self):
+-        # Need 2 positional arguments.
+-        with self.assertRaises(TypeError):
+-            xsrfutil.generate_token(None)
+-        # At most 2 positional arguments.
+-        with self.assertRaises(TypeError):
+-            xsrfutil.generate_token(None, None, None)
+-
+     def test_it(self):
+         digest = b'foobar'
+         digester = mock.Mock()
+@@ -110,14 +102,6 @@ class Test_generate_token(unittest.TestC
+ 
+ class Test_validate_token(unittest.TestCase):
+ 
+-    def test_bad_positional(self):
+-        # Need 3 positional arguments.
+-        with self.assertRaises(TypeError):
+-            xsrfutil.validate_token(None, None)
+-        # At most 3 positional arguments.
+-        with self.assertRaises(TypeError):
+-            xsrfutil.validate_token(None, None, None, None)
+-
+     def test_no_token(self):
+         key = token = user_id = None
+         self.assertFalse(xsrfutil.validate_token(key, token, user_id))
