@@ -1,0 +1,16 @@
+Description: Fix module path for urlresolvers
+Author: Thomas Goirand <zigo@debian.org>
+Forwarded: no
+Last-Update: 2023-08-14
+
+--- python-oauth2client-4.1.3.orig/oauth2client/contrib/django_util/__init__.py
++++ python-oauth2client-4.1.3/oauth2client/contrib/django_util/__init__.py
+@@ -230,7 +230,7 @@ import importlib
+ 
+ import django.conf
+ from django.core import exceptions
+-from django.core import urlresolvers
++import django.urls
+ from six.moves.urllib import parse
+ 
+ from oauth2client import clientsecrets

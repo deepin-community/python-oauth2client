@@ -15,6 +15,7 @@ override_dh_auto_clean:
 	rm -rf build
 	find . -iname '*.pyc' -delete
 	for i in $$(find . -type d -iname __pycache__) ; do rm -rf $$i ; done
+	rm -rf .pytest_cache
 
 override_dh_auto_build:
 	echo "Do nothing..."
@@ -31,6 +32,8 @@ ifeq (,$(findstring nocheck, $(DEB_BUILD_OPTIONS)))
 	set -e ; set -x ; for i in $(PYTHON3S) ; do \
 		PYMAJOR=`echo $$i | cut -d'.' -f1` ; \
 		echo "===> Testing with python$$i (python$$PYMAJOR)" ; \
-		DJANGO_SETTINGS_MODULE=tests.contrib.test_django_settings PYTHONPATH=$(CURDIR)/debian/tmp/usr/lib/python3/dist-packages python$$i -m nose -v --ignore-files=test_appengine\.py --ignore-files=test__appengine_ndb\.py --exclude-dir=tests/contrib/django_util tests ; \
+		DJANGO_SETTINGS_MODULE=tests.contrib.django_util.settings PYTHONPATH=$(CURDIR)/debian/tmp/usr/lib/python3/dist-packages python$$i -m \
+			pytest -v tests --ignore=tests/contrib/django_util ; \
 	done
 endif
+#\.py --ignore-files=test__appengine_ndb\.py --exclude-dir=tests/contrib/django_util tests ; \
