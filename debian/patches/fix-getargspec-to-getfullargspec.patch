@@ -1,0 +1,21 @@
+Description: Py 3.11: fix getargspec to getfullargspec
+Author: Thomas Goirand <zigo@debian.org>
+Bug-Debian: https://bugs.debian.org/1026468
+Forwarded: no
+Last-Update: 2022-12-23
+
+Index: python-oauth2client/oauth2client/_helpers.py
+===================================================================
+--- python-oauth2client.orig/oauth2client/_helpers.py
++++ python-oauth2client/oauth2client/_helpers.py
+@@ -136,7 +136,9 @@ def positional(max_positional_args):
+     if isinstance(max_positional_args, six.integer_types):
+         return positional_decorator
+     else:
+-        args, _, _, defaults = inspect.getargspec(max_positional_args)
++        argspec = inspect.getfullargspec(max_positional_args)
++        defaults = argspec.defaults
++        args = argspec.args
+         return positional(len(args) - len(defaults))(max_positional_args)
+ 
+ 

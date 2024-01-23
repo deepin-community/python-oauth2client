@@ -2,3 +2,6 @@ skip-network-doing-unit-test.patch
 remove-broken-tests.patch
 fix-hmac.new-call-in-py3.8.patch
 fix-import-Cryptodome-not-Crypto.patch
+fix-getargspec-to-getfullargspec.patch
+remove-broken-werkzeug-test.patch
+fix-path-of-urlresolvers.patch

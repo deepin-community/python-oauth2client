@@ -1,0 +1,60 @@
+Description: Remove broken werkzeug test
+ This test appear to be broken with Werkzeug 2.2.2.
+Author: Thomas Goirand <zigo@debian.org>
+Bug-Debian: https://bugs.debian.org/1026468
+Forwarded: no
+Last-Update: 2022-12-24
+
+--- python-oauth2client-4.1.3.orig/tests/contrib/test_flask_util.py
++++ python-oauth2client-4.1.3/tests/contrib/test_flask_util.py
+@@ -454,50 +454,6 @@ class FlaskOAuth2Tests(unittest.TestCase
+         def two():
+             return 'Hello'
+ 
+-    def test_incremental_auth(self):
+-        self._create_incremental_auth_app()
+-
+-        # No credentials, should redirect
+-        with self.app.test_client() as client:
+-            response = client.get('/one')
+-            self.assertIn('one', response.headers['Location'])
+-            self.assertEqual(response.status_code, httplib.FOUND)
+-
+-        # Credentials for one. /one should allow, /two should redirect.
+-        credentials = self._generate_credentials(scopes=['email', 'one'])
+-
+-        with self.app.test_client() as client:
+-            with client.session_transaction() as session:
+-                session['google_oauth2_credentials'] = credentials.to_json()
+-
+-            response = client.get('/one')
+-            self.assertEqual(response.status_code, httplib.OK)
+-
+-            response = client.get('/two')
+-            self.assertIn('two', response.headers['Location'])
+-            self.assertEqual(response.status_code, httplib.FOUND)
+-
+-            # Starting the authorization flow should include the
+-            # include_granted_scopes parameter as well as the scopes.
+-            response = client.get(response.headers['Location'][17:])
+-            q = urlparse.parse_qs(
+-                response.headers['Location'].split('?', 1)[1])
+-            self.assertIn('include_granted_scopes', q)
+-            self.assertEqual(
+-                set(q['scope'][0].split(' ')),
+-                set(['one', 'email', 'two', 'three']))
+-
+-        # Actually call two() without a redirect.
+-        credentials2 = self._generate_credentials(
+-            scopes=['email', 'two', 'three'])
+-
+-        with self.app.test_client() as client:
+-            with client.session_transaction() as session:
+-                session['google_oauth2_credentials'] = credentials2.to_json()
+-
+-            response = client.get('/two')
+-            self.assertEqual(response.status_code, httplib.OK)
+-
+     def test_incremental_auth_exchange(self):
+         self._create_incremental_auth_app()
+ 

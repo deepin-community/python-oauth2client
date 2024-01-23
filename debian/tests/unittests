@@ -1,0 +1,12 @@
+#!/bin/sh
+
+set -e
+set -x
+
+PYTHON3S=$(py3versions -vr 2>/dev/null)
+
+for i in ${PYTHON3S} ; do \
+	PYMAJOR=`echo $i | cut -d'.' -f1` ; \
+	echo "===> Testing with python$i (python$PYMAJOR)" ; \
+	pytest -v tests --ignore=tests/contrib/django_util ; \
+done
